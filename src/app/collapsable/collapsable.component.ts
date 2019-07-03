@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'collapsable',
@@ -7,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollapsableComponent implements OnInit {
 
-  constructor() { }
+  @Output() edit = new EventEmitter();
 
   public collapsed: boolean = false;
 
   ngOnInit() {
   }
 
-  public onEdit(event){
+  public onEdit(event) {
     event.stopPropagation();
+    this.edit.emit(undefined);
   }
 }

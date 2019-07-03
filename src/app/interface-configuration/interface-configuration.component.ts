@@ -13,6 +13,10 @@ export class InterfaceConfigurationComponent implements OnInit {
   ngOnInit() {
   }
 
+  public onEditInterface(){
+    alert("Interface should be edited");
+  }
+
 
 
 }
