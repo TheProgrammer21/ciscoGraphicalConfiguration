@@ -6,13 +6,20 @@ import { Injectable } from '@angular/core';
 export class AvailableInterfacesService {
 
   constructor() {
-    this.addInterfaceType("GigabitEthernet", "0/1-24");
+    this.setInterfaceTypes([
+      { type: "GigabitEthernet", values: "0/1-24" },
+      { type: "FastEthernet", values: "0/1-2" }
+    ]);
   }
 
   private types: any = [{}];
 
-  public addInterfaceType(type: string, values: string) {
-    this.types.push({ type: type, range: values });
+  public setInterfaceTypes(values: { type: string, values: string }[]) {
+    this.types = values;
+  }
+
+  public getInterfaceTypes(): { type: string, values: string }[] {
+    return this.types;
   }
 
   public getTypes(): string[] {

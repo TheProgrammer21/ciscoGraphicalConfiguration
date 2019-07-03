@@ -1,0 +1,23 @@
+p{
+    display: inline-block;
+}
+
+input, button{
+    display: inline-block;
+    margin-right: 4em;
+    margin-left: 0.5em;
+}
+
+.add{
+    display: inline-block;
+    font-weight: bold;
+    background: orange;
+    height: 2em;
+    width: 20em;
+}
+
+.control{
+    margin:auto;
+    margin-top: 2em;
+    margin-right: 2em;
+}
