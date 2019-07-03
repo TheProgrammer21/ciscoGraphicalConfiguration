@@ -1,0 +1,22 @@
+div{
+    padding: 1em;
+}
+
+p, input{
+    display: inline-block;
+}
+
+p{
+    width: 15%;
+    color:gray;
+}
+
+input{
+    height: 2em;
+    width: 20em;
+}
+
+.checkbox{
+    height: auto;
+    width: 2.5em;
+}
