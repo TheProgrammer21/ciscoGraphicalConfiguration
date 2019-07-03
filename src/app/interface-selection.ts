@@ -1,5 +1,3 @@
-import { endianness } from 'os';
-
 export class InterfaceSelection {
     private type: string;
     private prefix: string;
