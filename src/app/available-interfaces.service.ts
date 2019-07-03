@@ -46,7 +46,7 @@ export class AvailableInterfacesService {
     while (result.length > 1) {
       let res = [];
       result[0].forEach(e1 => {
-        result[1].forEach((e2, n) => {
+        result[1].forEach((e2) => {
           res.push(e1 + "/" + e2);
         })
       });

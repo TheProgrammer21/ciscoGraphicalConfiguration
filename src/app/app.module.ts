@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { GeneralConfigurationComponent } from './general-configuration/general-configuration.component';
 import { InterfaceConfigurationComponent } from './interface-configuration/interface-configuration.component';
 import { CollapsableComponent } from './collapsable/collapsable.component';
+import { InterfaceSettingsComponent } from './interface-settings/interface-settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GeneralConfigurationComponent,
     InterfaceConfigurationComponent,
-    CollapsableComponent
+    CollapsableComponent,
+    InterfaceSettingsComponent
   ],
   imports: [
     BrowserModule,
