@@ -1,11 +1,11 @@
 <h1>Configure available Ports of your Cisco device</h1>
-<div>
-    <p>Type:</p><input type="text">
-    <p>Interfaces-Numbers:</p><input pattern="\d+(-\d+)?(\/\d+(-\d+)?)+">
-    <button>Remove</button>
+<div *ngFor="let intf of interfaces; index as i">
+    <p>Type:</p><input type="text" [(ngModel)]="interfaces[i].type">
+    <p>Interfaces-Numbers:</p><input [(ngModel)]="interfaces[i].values" pattern="\d+(-\d+)?(\/\d+(-\d+)?)+">
+    <button (click)="onRemoveInterface(i)">Remove</button>
 </div>
-<button class="add">Add new interface type</button>
+<button class="add" (click)="onAddInterface()">Add new interface type</button>
 <div>
-    <button class="control">Save</button>
+    <button class="control" (click)="onSave()">Save</button>
     <button class="control">Cancel</button>
 </div>
