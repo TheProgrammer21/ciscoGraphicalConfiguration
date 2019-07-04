@@ -27,7 +27,4 @@ export class InterfaceConfigurationComponent implements OnInit {
   public onEditInterface() {
     alert("Interface should be edited");
   }
-
-
-
 }
