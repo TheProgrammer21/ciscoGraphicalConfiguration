@@ -14,7 +14,7 @@ export class InterfaceSettingsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.interfaces = this.avInt.getInterfaces();
+    this.interfaces = this.avInt.getInterfaces().slice();
   }
 
   onAddInterface(): void {
