@@ -51,4 +51,13 @@ export class InterfaceSelection {
     public isRange(): boolean {
         return this.range;
     }
+
+    public getConfigString(): string {
+        if (this.range) {
+            //If it is a range
+            console.log("Todo -- getConfigString --> range")
+        } else {
+            return "interface " + this.type + this.prefix + this.start;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AvailableInterfacesService } from '../available-interfaces.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-interface-settings',
@@ -9,7 +10,7 @@ import { AvailableInterfacesService } from '../available-interfaces.service';
 export class InterfaceSettingsComponent implements OnInit {
   public interfaces: { type: string, values: string }[] = [];
 
-  constructor(private avInt: AvailableInterfacesService) {
+  constructor(private avInt: AvailableInterfacesService, private router: Router) {
   }
 
   ngOnInit() {
@@ -27,5 +28,10 @@ export class InterfaceSettingsComponent implements OnInit {
   onSave(): void {
     //Todo: validate input
     this.avInt.setInterfaces(this.interfaces);
+    this.router.navigate(["/"]);
+  }
+
+  onCancel(): void {
+    this.router.navigate(["/"]);
   }
 }

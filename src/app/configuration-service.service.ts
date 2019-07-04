@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { InterfaceSelection } from './interface-selection';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class ConfigurationService {
       this.addConfigString(e, conf[e]);
     });
     console.log(this.commands);
+  }
+
+  public addInterfaceConfig(conf, int: InterfaceSelection) {
+    
   }
 
   private addConfigString(key, value) {
