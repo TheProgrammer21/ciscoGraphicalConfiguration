@@ -11,23 +11,21 @@ import { InterfaceSelectionsService } from '../interface-selections.service';
 })
 export class InterfaceConfigurationComponent implements OnInit {
 
-  public interfaces: InterfaceSelection[] = [null]; //null wenn noch keine Auswahl getroffen wurde
-
-  constructor(public conf: ConfigurationService, private _router: Router, private intSelection: InterfaceSelectionsService) { }
+  constructor(public conf: ConfigurationService, private _router: Router, public intSelection: InterfaceSelectionsService) { }
 
   ngOnInit() {
   }
 
   public onAddInterface(): void {
-    this.interfaces.push(null);
+    this.intSelection.addInterface();
   }
 
   public onRemoveInterface(index: number): void {
-    this.interfaces.splice(index, 1);
+    this.intSelection.removeInterface(index);
   }
 
   public onEditInterface(index: number) {
+    this.intSelection.setIndex(index);
     this._router.navigate(['./interfaceSelection']);
-    this.intSelection.setInterface(this.interfaces[index]);
   }
 }
