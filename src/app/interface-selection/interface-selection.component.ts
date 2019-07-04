@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InterfaceSelectionsService } from '../interface-selections.service';
 
 @Component({
   selector: 'app-interface-selection',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InterfaceSelectionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private selectedInterface: InterfaceSelectionsService) { }
 
   ngOnInit() {
+    
   }
-
 }

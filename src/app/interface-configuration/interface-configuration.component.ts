@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from '../configuration-service.service';
 import { InterfaceSelection } from '../interface-selection';
+import { Router } from '@angular/router';
+import { InterfaceSelectionsService } from '../interface-selections.service';
 
 @Component({
   selector: 'app-interface-configuration',
@@ -11,7 +13,7 @@ export class InterfaceConfigurationComponent implements OnInit {
 
   public interfaces: InterfaceSelection[] = [null]; //null wenn noch keine Auswahl getroffen wurde
 
-  constructor(public conf: ConfigurationService) { }
+  constructor(public conf: ConfigurationService, private _router: Router, private intSelection: InterfaceSelectionsService) { }
 
   ngOnInit() {
   }
@@ -24,7 +26,8 @@ export class InterfaceConfigurationComponent implements OnInit {
     this.interfaces.splice(index, 1);
   }
 
-  public onEditInterface() {
-    alert("Interface should be edited");
+  public onEditInterface(index: number) {
+    this._router.navigate(['./interfaceSelection']);
+    this.intSelection.setInterface(this.interfaces[index]);
   }
 }

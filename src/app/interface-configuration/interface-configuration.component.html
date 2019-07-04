@@ -1,6 +1,6 @@
 <p>interface-configuration works!</p>
 <div *ngFor="let int of interfaces; index as i" class="collapse">
-    <collapsable (edit)="onEditInterface()" (remove)="onRemoveInterface(i)">
+    <collapsable (edit)="onEditInterface(i)" (remove)="onRemoveInterface(i)">
         <button>asdf</button>
         <p>asdf</p>
     </collapsable>
