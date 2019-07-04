@@ -1,5 +1,6 @@
 <div class="header"  (click)="collapsed = !collapsed">
     <p>Interface-Überschrift</p>
+    <p class="remove" (click)="onRemove($event)">Entfernen</p>
     <p class="edit" (click)="onEdit($event)">Bearbeiten</p>
 </div>
 <ng-content *ngIf="!collapsed"></ng-content>

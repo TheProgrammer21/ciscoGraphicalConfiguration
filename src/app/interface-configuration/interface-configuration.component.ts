@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from '../configuration-service.service';
+import { InterfaceSelection } from '../interface-selection';
 
 @Component({
   selector: 'app-interface-configuration',
@@ -8,12 +9,22 @@ import { ConfigurationService } from '../configuration-service.service';
 })
 export class InterfaceConfigurationComponent implements OnInit {
 
+  public interfaces: InterfaceSelection[] = [null];
+
   constructor(public conf: ConfigurationService) { }
 
   ngOnInit() {
   }
 
-  public onEditInterface(){
+  public onAddInterface(): void {
+    this.interfaces.push(null);
+  }
+
+  public onRemoveInterface(index: number): void {
+    this.interfaces.splice(index, 1);
+  }
+
+  public onEditInterface() {
     alert("Interface should be edited");
   }
 

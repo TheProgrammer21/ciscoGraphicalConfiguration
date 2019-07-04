@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class CollapsableComponent implements OnInit {
 
   @Output() edit = new EventEmitter();
+  @Output() remove = new EventEmitter();
 
   public collapsed: boolean = false;
 
@@ -17,5 +18,10 @@ export class CollapsableComponent implements OnInit {
   public onEdit(event) {
     event.stopPropagation();
     this.edit.emit(undefined);
+  }
+
+  public onRemove(event) {
+    event.stopPropagation();
+    this.remove.emit(undefined);
   }
 }

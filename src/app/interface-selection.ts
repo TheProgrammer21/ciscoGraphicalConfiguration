@@ -51,18 +51,4 @@ export class InterfaceSelection {
     public isRange(): boolean {
         return this.range;
     }
-
-    public setStart(value: string) {
-        let split = this.disassembleInterface(value);
-        this.type = split.type;
-        this.prefix = split.prefix;
-        this.start = split.num;
-    }
-
-    public setEnd(value: string) {
-        let split = this.disassembleInterface(value);
-        this.type = split.type;
-        this.prefix = split.prefix;
-        this.end = split.num;
-    }
 }
