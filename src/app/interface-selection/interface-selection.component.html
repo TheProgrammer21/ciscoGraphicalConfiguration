@@ -1,1 +1,16 @@
-<p>interface-selection works!</p>
+<p>Interface Type:</p>
+<select #type (change)="onChangeType(type.options[type.selectedIndex].text)">
+    <option *ngFor="let int of interfaces.getTypes()">{{int}}</option>
+</select>
+
+<div *ngIf="type.selectedIndex != -1">
+    <p>Select Interface:</p>
+    <select>
+        <option *ngFor="let intf of allInterfaces">{{intf}}</option>
+    </select>
+</div>
+
+<div>
+    <button>Save</button>
+    <button>Cancel</button>
+</div>

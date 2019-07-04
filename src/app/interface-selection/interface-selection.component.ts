@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InterfaceSelectionsService } from '../interface-selections.service';
+import { AvailableInterfacesService } from '../available-interfaces.service';
 
 @Component({
   selector: 'app-interface-selection',
@@ -8,9 +9,16 @@ import { InterfaceSelectionsService } from '../interface-selections.service';
 })
 export class InterfaceSelectionComponent implements OnInit {
 
-  constructor(private selectedInterface: InterfaceSelectionsService) { }
+  public allInterfaces: string[] = [];
+
+  constructor(private selectedInterface: InterfaceSelectionsService, private interfaces: AvailableInterfacesService) {
+  }
 
   ngOnInit() {
-    
+    this.onChangeType(this.interfaces.getTypes()[0]);
+  }
+
+  public onChangeType(type: string) {
+    this.allInterfaces = this.interfaces.getAllInterfacesOfType(type);
   }
 }

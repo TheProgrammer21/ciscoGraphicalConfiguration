@@ -29,7 +29,7 @@ export class AvailableInterfacesService {
   }
 
   public getAllInterfacesOfType(type: string): string[] {
-    let values = this.types.find(e => e.type == type);
+    let values = this.types.find(e => e.type == type).values;
     values = values.split("/");
     let arr = []; //Beinhaltet alle aufgelösten Werte in Subarrays, jedes Subarray stellt einen von / getrennten Bereich dar
 
@@ -37,7 +37,7 @@ export class AvailableInterfacesService {
       let subarr = []; //die Werte des aufzulösenden Bereiches, also alle Werte zwischen start-end
       let boundaries = e.split("-");
       let start: number = parseInt(boundaries[0]);
-      let end: number = boundaries.length == 0 ? start : parseInt(boundaries[1]);
+      let end: number = boundaries.length == 1 ? start : parseInt(boundaries[1]);
       for (; start <= end; start++) {
         subarr.push(start);
       }
