@@ -8,6 +8,7 @@ import { GeneralConfigurationComponent } from './general-configuration/general-c
 import { InterfaceConfigurationComponent } from './interface-configuration/interface-configuration.component';
 import { CollapsableComponent } from './collapsable/collapsable.component';
 import { InterfaceSettingsComponent } from './interface-settings/interface-settings.component';
+import { InterfaceSelectionComponent } from './interface-selection/interface-selection.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { InterfaceSettingsComponent } from './interface-settings/interface-setti
     GeneralConfigurationComponent,
     InterfaceConfigurationComponent,
     CollapsableComponent,
-    InterfaceSettingsComponent
+    InterfaceSettingsComponent,
+    InterfaceSelectionComponent
   ],
   imports: [
     BrowserModule,

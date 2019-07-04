@@ -9,7 +9,7 @@ import { InterfaceSelection } from '../interface-selection';
 })
 export class InterfaceConfigurationComponent implements OnInit {
 
-  public interfaces: InterfaceSelection[] = [null];
+  public interfaces: InterfaceSelection[] = [null]; //null wenn noch keine Auswahl getroffen wurde
 
   constructor(public conf: ConfigurationService) { }
 
