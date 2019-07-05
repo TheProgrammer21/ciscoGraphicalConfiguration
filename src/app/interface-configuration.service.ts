@@ -11,9 +11,12 @@ export class InterfaceConfigurationService {
   }
 
   private index: number;
-  private interfaces: InterfaceSelection[] = []; //null wenn noch keine Auswahl getroffen wurde
-  private savedConf = [];
+
+  private currentInterfaces: InterfaceSelection[] = []; //null wenn noch keine Auswahl getroffen wurde
+  private savedInterfaces: InterfaceSelection[] = [];
   public currentConf = [];
+  private savedConf = [];
+
   private editSelection = false;
 
   private emptyConf = {
@@ -26,25 +29,25 @@ export class InterfaceConfigurationService {
    * @param int Das Interface an der Stelle index wird durch den Parameter ersetzt
    */
   public setInterface(int: InterfaceSelection) {
-    this.interfaces[this.index] = int;
+    this.currentInterfaces[this.index] = int;
   }
 
   public addInterface(): void {
-    this.interfaces.push(null);
+    this.currentInterfaces.push(null);
     this.currentConf.push(Object.assign({}, this.emptyConf));
   }
 
   public removeInterface(index: number) {
-    this.interfaces.splice(index, 1);
+    this.currentInterfaces.splice(index, 1);
     this.currentConf.splice(index, 1);
   }
 
   public getInterface(): InterfaceSelection {
-    return this.interfaces[this.index];
+    return this.currentInterfaces[this.index];
   }
 
   public getInterfaces(): InterfaceSelection[] {
-    return this.interfaces;
+    return this.currentInterfaces;
   }
 
   public setIndex(index: number): void {
@@ -59,6 +62,7 @@ export class InterfaceConfigurationService {
   public initConfig() {
     if (!this.editSelection) {
       this.currentConf = this.savedConf.slice();
+      this.currentInterfaces = this.savedInterfaces.slice();
     } else {
       this.editSelection = false;
     }
@@ -69,6 +73,7 @@ export class InterfaceConfigurationService {
       this.validate(e);
     })
     this.savedConf = this.currentConf.slice();
+    this.savedInterfaces = this.currentInterfaces.slice();
   }
 
   private validate(c) {
