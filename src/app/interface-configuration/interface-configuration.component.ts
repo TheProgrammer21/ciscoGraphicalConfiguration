@@ -41,7 +41,7 @@ export class InterfaceConfigurationComponent implements OnInit {
       this.intConfig.saveConfig();
       this._router.navigate(['/']);
     } catch (e) {
-      alert("Error!");
+      alert(e.message);
     }
   }
 }

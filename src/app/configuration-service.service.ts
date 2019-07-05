@@ -34,13 +34,11 @@ export class ConfigurationService {
 
   public addInterfaceConfig(interfaces: InterfaceSelection[], configuration: {}[]) {
     interfaces.forEach((e, i) => {
-      if (e != null) { //Todo - es darf beim Speichern keines null sein, vorher prüfen!
-        this.addCommand(e.getConfigString());
-        Object.keys(configuration[i]).forEach(e => {
-          this.addConfigString(e, (configuration[i])[e]);
-        });
-        this.addCommand("exit");
-      }
+      this.addCommand(e.getConfigString());
+      Object.keys(configuration[i]).forEach(e => {
+        this.addConfigString(e, (configuration[i])[e]);
+      });
+      this.addCommand("exit");
     });
     console.log("Interfaces:");
     console.log(this.commands);

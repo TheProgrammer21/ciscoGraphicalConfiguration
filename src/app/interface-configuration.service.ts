@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InterfaceSelection } from './interface-selection';
 import { ConfigurationService } from './configuration-service.service';
+import { NetworkUtilities } from './network-utilities';
 
 @Injectable({
   providedIn: 'root'
@@ -69,16 +70,27 @@ export class InterfaceConfigurationService {
   }
 
   public saveConfig() {
+    //Every interface must have a type and interface set
+    this.currentInterfaces.forEach((e, i) => {
+      if (e == null) {
+        throw new Error("Interface " + (i + 1) + " is not set!");
+      }
+    });
+
     this.currentConf.forEach(e => {
       this.validate(e);
     })
     this.savedConf = this.currentConf.slice();
     this.savedInterfaces = this.currentInterfaces.slice();
+    this.conf.addInterfaceConfig(this.currentInterfaces, this.currentConf);
   }
 
   private validate(c) {
-    if (c.hasOwnProperty('ip') || c.hasOwnProperty('subnetmask')) {
+    if (c.ip != "" || c.subnetmask != "") {
       if (c.ip.match(/^\d{1,3}(\.\d{1,3}){3}$/g) != null && c.subnetmask.match(/^\d{1,3}(\.\d{1,3}){3}|\/[1-2][0-9]|\/3[0-2]|\/[1-9]$/g) != null) {
+        if (c.subnetmask.match(/^\/[1-2][0-9]|\/3[0-2]|\/[1-9]$/g) != null) {
+          c.subnetmask = NetworkUtilities.prefixToSubnetmask(c.subnetmask);
+        }
         c.ipaddress = c.ip + " " + c.subnetmask;
       } else {
         throw new Error("IP address or subnetmask for interface not correctly set!");
