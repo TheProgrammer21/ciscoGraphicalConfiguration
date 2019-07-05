@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from '../configuration-service.service';
-import { InterfaceSelection } from '../interface-selection';
 import { Router } from '@angular/router';
-import { InterfaceSelectionsService } from '../interface-selections.service';
+import { InterfaceConfigurationService } from '../interface-configuration.service';
 
 @Component({
   selector: 'app-interface-configuration',
@@ -11,21 +10,38 @@ import { InterfaceSelectionsService } from '../interface-selections.service';
 })
 export class InterfaceConfigurationComponent implements OnInit {
 
-  constructor(public conf: ConfigurationService, private _router: Router, public intSelection: InterfaceSelectionsService) { }
+  constructor(public conf: ConfigurationService, private _router: Router, public intConfig: InterfaceConfigurationService) { }
 
   ngOnInit() {
+    this.intConfig.initConfig();
+    if (this.intConfig.getInterfaces().length == 0) {
+      this.intConfig.addInterface();
+    }
   }
 
+  public interfaceConfig = [{}];
+
   public onAddInterface(): void {
-    this.intSelection.addInterface();
+    this.intConfig.addInterface();
+    this.interfaceConfig.push({});
   }
 
   public onRemoveInterface(index: number): void {
-    this.intSelection.removeInterface(index);
+    this.intConfig.removeInterface(index);
+    this.interfaceConfig.splice(index, 1);
   }
 
   public onEditInterface(index: number) {
-    this.intSelection.setIndex(index);
+    this.intConfig.setIndex(index);
     this._router.navigate(['./interfaceSelection']);
+  }
+
+  public onSave(): void {
+    try {
+      this.intConfig.saveConfig();
+      this._router.navigate(['/']);
+    } catch (e) {
+      alert("Error!");
+    }
   }
 }

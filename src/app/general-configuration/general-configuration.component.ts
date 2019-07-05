@@ -21,7 +21,7 @@ export class GeneralConfigurationComponent implements OnInit {
     passwordEncryption: false
   }
 
-  public save(): void {
+  public onSave(): void {
     this.conf.addGeneralConfig(this.currentConfig);
   }
 

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { InterfaceSelectionsService } from './interface-selections.service';
+import { InterfaceConfigurationService } from './interface-configuration.service';
 
 describe('InterfaceSelectionsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: InterfaceSelectionsService = TestBed.get(InterfaceSelectionsService);
+    const service: InterfaceConfigurationService = TestBed.get(InterfaceConfigurationService);
     expect(service).toBeTruthy();
   });
 });

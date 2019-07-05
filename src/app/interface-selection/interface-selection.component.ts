@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { InterfaceSelectionsService } from '../interface-selections.service';
+import { InterfaceConfigurationService } from '../interface-configuration.service';
 import { AvailableInterfacesService } from '../available-interfaces.service';
 import { InterfaceSelection } from '../interface-selection';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ export class InterfaceSelectionComponent implements OnInit {
   public selType: number;
   public selInterface: number;
 
-  constructor(private selectedInterface: InterfaceSelectionsService, private interfaces: AvailableInterfacesService, private router: Router) {
+  constructor(private selectedInterface: InterfaceConfigurationService, private interfaces: AvailableInterfacesService, private router: Router) {
   }
 
   ngOnInit() {

@@ -1,11 +1,15 @@
-<div *ngFor="let int of intSelection.getInterfaces(); index as i" class="collapse">
+<div *ngFor="let int of intConfig.getInterfaces(); index as i" class="collapse">
     <collapsable (edit)="onEditInterface(i)" (remove)="onRemoveInterface(i)">
-        <button>asdf</button>
-        <p>asdf</p>
+        <div>
+            <p>IP-Address:</p><input #ip [(ngModel)]="intConfig.currentConf[i].ip" pattern="\d{1,3}(\.\d{1,3}){3}">
+            <p>Subnetmask:</p><input #subnetmask [(ngModel)]="intConfig.currentConf[i].subnetmask"
+                pattern="\d{1,3}(\.\d{1,3}){3}|\/[1-2][0-9]|\/3[0-2]|\/[1-9]">
+        </div>
     </collapsable>
 </div>
 <br>
 <button (click)="onAddInterface()">Add Interface Configuration</button>
 <div>
-    <button routerLink="/">Go back</button>
+    <button (click)="onSave()">Save</button>
+    <button routerLink="/">Cancel</button>
 </div>

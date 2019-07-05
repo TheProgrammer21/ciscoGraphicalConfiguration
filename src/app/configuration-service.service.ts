@@ -10,9 +10,12 @@ export class ConfigurationService {
 
   constructor() { }
 
-  private commands: String = "";
+  private commands: string = "";
 
-  private addCommand(com: String): void {
+  private generalCommands: string = "";
+  private interfaceCommands: string = "";
+
+  private addCommand(com: string): void {
     this.commands += com + "\n";
   }
 
@@ -23,11 +26,26 @@ export class ConfigurationService {
     Object.keys(conf).forEach(e => {
       this.addConfigString(e, conf[e]);
     });
+    console.log("General:");
     console.log(this.commands);
+    this.generalCommands = this.commands;
+    this.commands = "";
   }
 
-  public addInterfaceConfig(conf, int: InterfaceSelection) {
-    
+  public addInterfaceConfig(interfaces: InterfaceSelection[], configuration: {}[]) {
+    interfaces.forEach((e, i) => {
+      if (e != null) { //Todo - es darf beim Speichern keines null sein, vorher prüfen!
+        this.addCommand(e.getConfigString());
+        Object.keys(configuration[i]).forEach(e => {
+          this.addConfigString(e, (configuration[i])[e]);
+        });
+        this.addCommand("exit");
+      }
+    });
+    console.log("Interfaces:");
+    console.log(this.commands);
+    this.interfaceCommands = this.commands;
+    this.commands = "";
   }
 
   private addConfigString(key, value) {
@@ -62,6 +80,12 @@ export class ConfigurationService {
           this.addCommand("no service password-encryption");
         }
         break;
+      case "ipaddress":
+        if (value == "") {
+          this.addCommand("no ip address");
+        } else {
+          this.addCommand("ip address " + value);
+        }
     }
   }
 }
