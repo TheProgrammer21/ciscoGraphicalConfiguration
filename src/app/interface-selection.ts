@@ -60,4 +60,12 @@ export class InterfaceSelection {
             return "interface " + this.type + this.prefix + this.start;
         }
     }
+
+    public getTitle(): string {
+        if (this.range) {
+            return this.type + " " + this.prefix + this.start + " - " + this.prefix + this.end;
+        } else {
+            return this.type + " " + this.prefix + this.start;
+        }
+    }
 }

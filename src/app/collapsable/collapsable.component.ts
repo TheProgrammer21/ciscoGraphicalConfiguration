@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'collapsable',
@@ -9,6 +9,7 @@ export class CollapsableComponent implements OnInit {
 
   @Output() edit = new EventEmitter();
   @Output() remove = new EventEmitter();
+  @Input('title') title: string;
 
   public collapsed: boolean = false;
 
