@@ -11,7 +11,8 @@ export class GeneralConfigurationService {
     hostname: "",
     banner: "",
     enableSecret: "",
-    passwordEncryption: false
+    passwordEncryption: false,
+    cdprun: false
   };
 
   constructor(private config: ConfigurationService) { }

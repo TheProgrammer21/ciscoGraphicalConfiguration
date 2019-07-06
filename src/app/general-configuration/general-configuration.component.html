@@ -15,5 +15,9 @@
     <p>Password Encryption</p>
     <br>
 </div>
+<div>
+    <input [(ngModel)]="genConfig.currentConfig.cdprun" class="checkbox" type="checkbox">
+    <p>CDP on all Interfaces</p>
+</div>
 <button routerLink="/" (click)="onSave()">Save</button>
 <button routerLink="/">Cancel</button>
