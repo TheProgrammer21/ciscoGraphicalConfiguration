@@ -43,6 +43,11 @@ export class InterfaceConfigurationService {
     this.currentConf.splice(index, 1);
   }
 
+  public removeSavedInterface(index: number) {
+    this.savedInterfaces.splice(index, 1);
+    this.savedConf.splice(index, 1);
+  }
+
   public getInterface(): InterfaceSelection {
     return this.currentInterfaces[this.index];
   }

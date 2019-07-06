@@ -63,9 +63,13 @@ export class InterfaceSelection {
 
     public getTitle(): string {
         if (this.range) {
-            return this.type + " " + this.prefix + this.start + " - " + this.prefix + this.end;
+            return this.toString() + " - " + this.prefix + this.end;
         } else {
-            return this.type + " " + this.prefix + this.start;
+            return this.toString();
         }
+    }
+
+    public toString(): string {
+        return this.type + " " + this.prefix + this.start;
     }
 }

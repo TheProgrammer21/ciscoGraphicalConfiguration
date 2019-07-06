@@ -29,7 +29,14 @@ export class AvailableInterfacesService {
   }
 
   public getAllInterfacesOfType(type: string): string[] {
-    let values = this.types.find(e => e.type == type).values;
+    return this.getAllInterfacesOfTypeInternal(type, this.types.find(e => e.type == type).values);
+  }
+
+  public getAllInterfacesByTypeAndValue(type: string, values): string[] {
+    return this.getAllInterfacesOfTypeInternal(type, values);
+  }
+
+  private getAllInterfacesOfTypeInternal(type: string, values): string[] {
     values = values.split("/");
     let arr = []; //Beinhaltet alle aufgelösten Werte in Subarrays, jedes Subarray stellt einen von / getrennten Bereich dar
 
