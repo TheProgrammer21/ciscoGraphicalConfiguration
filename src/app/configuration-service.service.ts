@@ -106,6 +106,13 @@ export class ConfigurationService {
           this.addCommand("no history size");
         }
         break;
+      case "shutdown":
+        if (value) {
+          this.addCommand("shutdown");
+        } else {
+          this.addCommand("no shutdown");
+        }
+        break;
     }
   }
 }

@@ -22,7 +22,8 @@ export class InterfaceConfigurationService {
 
   private emptyConf = {
     ip: "",
-    subnetmask: ""
+    subnetmask: "",
+    shutdown: false
   };
 
   /**
