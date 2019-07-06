@@ -1,18 +1,19 @@
 <div>
     <p>Hostname:</p>
-    <input [(ngModel)]="currentConfig.hostname" type="text">
+    <input [(ngModel)]="genConfig.currentConfig.hostname" type="text">
 </div>
 <div>
     <p>Banner:</p>
-    <input [(ngModel)]="currentConfig.banner">
+    <input [(ngModel)]="genConfig.currentConfig.banner">
 </div>
 <div>
     <p>Global Configuration Password</p>
-    <input [(ngModel)]="currentConfig.enableSecret" type="password"><br>
+    <input [(ngModel)]="genConfig.currentConfig.enableSecret" type="password"><br>
 </div>
 <div>
-    <input [(ngModel)]="currentConfig.passwordEncryption" class="checkbox" type="checkbox">
+    <input [(ngModel)]="genConfig.currentConfig.passwordEncryption" class="checkbox" type="checkbox">
     <p>Password Encryption</p>
     <br>
 </div>
 <button routerLink="/" (click)="onSave()">Save</button>
+<button routerLink="/">Cancel</button>

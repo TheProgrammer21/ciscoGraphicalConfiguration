@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigurationService } from '../configuration-service.service';
-import { config } from 'rxjs';
+import { GeneralConfigurationService } from '../general-configuration.service';
 
 @Component({
   selector: 'app-general-configuration',
@@ -9,20 +8,14 @@ import { config } from 'rxjs';
 })
 export class GeneralConfigurationComponent implements OnInit {
 
-  constructor(private conf: ConfigurationService) { }
+  constructor(private genConfig: GeneralConfigurationService) { }
 
   ngOnInit() {
-  }
-
-  currentConfig = {
-    hostname: "",
-    banner: "",
-    enableSecret: "",
-    passwordEncryption: false
+    this.genConfig.initConfig();
   }
 
   public onSave(): void {
-    this.conf.addGeneralConfig(this.currentConfig);
+    this.genConfig.saveConfig();
   }
 
 }
