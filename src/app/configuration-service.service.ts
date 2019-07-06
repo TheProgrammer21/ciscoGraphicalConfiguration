@@ -113,6 +113,13 @@ export class ConfigurationService {
           this.addCommand("no shutdown");
         }
         break;
+      case "cdpenable":
+        if (value) {
+          this.addCommand("cdp enable");
+        } else {
+          this.addCommand("no cdp enable");
+        }
+        break;
     }
   }
 }
