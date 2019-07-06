@@ -84,12 +84,28 @@ export class ConfigurationService {
         } else {
           this.addCommand("ip address " + value);
         }
+        break;
       case "cdprun":
         if (value) {
           this.addCommand("cdp run");
         } else {
           this.addCommand("no cdp run");
         }
+        break;
+      case "history":
+        if (value) {
+          this.addCommand("history");
+        } else {
+          this.addCommand("no history");
+        }
+        break;
+      case "historysize":
+        if (value != "") {
+          this.addCommand("history size " + value);
+        } else {
+          this.addCommand("no history size");
+        }
+        break;
     }
   }
 }

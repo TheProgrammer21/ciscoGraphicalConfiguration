@@ -12,7 +12,9 @@ export class GeneralConfigurationService {
     banner: "",
     enableSecret: "",
     passwordEncryption: false,
-    cdprun: false
+    cdprun: true,
+    history: true,
+    historysize: 10
   };
 
   constructor(private config: ConfigurationService) { }

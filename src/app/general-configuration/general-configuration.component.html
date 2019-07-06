@@ -19,5 +19,11 @@
     <input [(ngModel)]="genConfig.currentConfig.cdprun" class="checkbox" type="checkbox">
     <p>CDP on all Interfaces</p>
 </div>
+<div>
+    <input [(ngModel)]="genConfig.currentConfig.history" class="checkbox" type="checkbox">
+    <p>History</p>
+    <p>History size:</p>
+    <input [(ngModel)]="genConfig.currentConfig.historysize" type="number" min=0 max = 256>
+</div>
 <button routerLink="/" (click)="onSave()">Save</button>
 <button routerLink="/">Cancel</button>
