@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from '../configuration-service.service';
 import { Router } from '@angular/router';
 import { InterfaceConfigurationService } from '../interface-configuration.service';
+import { RoutingConfigurationService } from '../routing-configuration.service';
 
 @Component({
   selector: 'app-interface-configuration',
@@ -10,7 +11,7 @@ import { InterfaceConfigurationService } from '../interface-configuration.servic
 })
 export class InterfaceConfigurationComponent implements OnInit {
 
-  constructor(public conf: ConfigurationService, private _router: Router, public intConfig: InterfaceConfigurationService) { }
+  constructor(public conf: ConfigurationService, private _router: Router, public intConfig: InterfaceConfigurationService, private rouConfig: RoutingConfigurationService) { }
 
   ngOnInit() {
     this.intConfig.initConfig();
@@ -29,6 +30,27 @@ export class InterfaceConfigurationComponent implements OnInit {
   public onRemoveInterface(index: number): void {
     this.intConfig.removeInterface(index);
     this.interfaceConfig.splice(index, 1);
+  }
+
+  public onRipReceive(type: string, v1: boolean, v2: boolean, i: number) {
+    let versions;
+    if (v1 && v2) {
+      versions = "1 2";
+    }
+    else if (v1) {
+      versions = "1";
+    }
+    else if (v2) {
+      versions = "2";
+    } else {
+      versions = "";
+    }
+
+    if (type == "send") {
+      this.intConfig.currentConf[i].ripSendVersion = versions;
+    } else if (type == "receive") {
+      this.intConfig.currentConf[i].ripReceiveVersion = versions;
+    }
   }
 
   public onEditInterface(index: number) {

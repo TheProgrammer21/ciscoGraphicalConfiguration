@@ -17,6 +17,25 @@
             <input [(ngModel)]="intConfig.currentConf[i].cdpenable" type="checkbox" class="checkbox">
             <p>CDP enabled</p>
         </div>
+        <div *ngIf="rouConfig.ripEnabled()">
+            <p>RIP receive Versions:</p>
+            <input #receiveV1 [checked]="intConfig.currentConf[i].ripReceiveVersion.includes('1')"
+                (click)="onRipReceive('receive', receiveV1.checked, receiveV2.checked, i)" type="checkbox"
+                class="checkbox">
+            <p>1</p>
+            <input #receiveV2 [checked]="intConfig.currentConf[i].ripReceiveVersion.includes('2')"
+                (click)="onRipReceive('receive', receiveV1.checked, receiveV2.checked, i)" type="checkbox"
+                class="checkbox">
+            <p>2</p>
+            <br>
+            <p>RIP send Versions:</p>
+            <input #sendV1 [checked]="intConfig.currentConf[i].ripSendVersion.includes('1')"
+                (click)="onRipReceive('send', sendV1.checked, sendV2.checked, i)" type="checkbox" class="checkbox">
+            <p>1</p>
+            <input #sendV2 [checked]="intConfig.currentConf[i].ripSendVersion.includes('2')"
+                (click)="onRipReceive('send', sendV1.checked, sendV2.checked, i)" type="checkbox" class="checkbox">
+            <p>2</p>
+        </div>
     </collapsable>
 </div>
 <br>

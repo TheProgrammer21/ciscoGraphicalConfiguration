@@ -163,6 +163,20 @@ export class ConfigurationService {
           this.addCommand("no auto-summary");
         }
         break;
+      case "ripReceiveVersion":
+        if (value == "") {
+          this.addCommand("no ip rip receive version");
+        } else {
+          this.addCommand("ip rip receive version " + value);
+        }
+        break;
+      case "ripSendVersion":
+        if (value == "") {
+          this.addCommand("no ip rip send version");
+        } else {
+          this.addCommand("ip rip send version " + value);
+        }
+        break;
     }
   }
 }

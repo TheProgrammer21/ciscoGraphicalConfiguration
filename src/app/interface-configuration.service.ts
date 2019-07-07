@@ -24,7 +24,9 @@ export class InterfaceConfigurationService {
     ip: "",
     subnetmask: "",
     shutdown: false,
-    cdpenable: true
+    cdpenable: true,
+    ripReceiveVersion: "",
+    ripSendVersion: ""
   };
 
   /**

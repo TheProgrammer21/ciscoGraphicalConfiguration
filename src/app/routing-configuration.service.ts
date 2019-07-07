@@ -22,6 +22,10 @@ export class RoutingConfigurationService {
     this.currentConfig.rip.networks.push("");
   }
 
+  public ripEnabled() {
+    return this.savedConfig.rip.enabled;
+  }
+
   public addPassiveInterface() {
     if (this.currentConfig.rip.passiveInterfaces == "default") {
       this.currentConfig.rip.passiveInterfaces = [""];
