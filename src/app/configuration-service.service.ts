@@ -156,6 +156,13 @@ export class ConfigurationService {
           this.addCommand("passive-interface default")
         }
         break;
+      case "riprouteSummerization":
+        if (value) {
+          this.addCommand("auto-summary");
+        } else {
+          this.addCommand("no auto-summary");
+        }
+        break;
     }
   }
 }

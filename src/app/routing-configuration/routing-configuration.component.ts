@@ -17,6 +17,12 @@ export class RoutingConfigurationComponent implements OnInit {
     this.rouConfig.initConfig();
   }
 
+  onChangeVersion(version: string) {
+    if (version == "1") {
+      this.rouConfig.currentConfig.rip.routeSummerization = true;
+    }
+  }
+
   onAddNetwork() {
     this.rouConfig.addNetwork();
   }
