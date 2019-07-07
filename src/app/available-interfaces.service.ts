@@ -22,6 +22,12 @@ export class AvailableInterfacesService {
     return this.types;
   }
 
+  public getAllInterfaces(): string[] {
+    let result = [];
+    this.getTypes().forEach(e => result = result.concat(this.getAllInterfacesOfType(e)));
+    return result;
+  }
+
   public getTypes(): string[] {
     let result: string[] = []
     this.types.forEach(e => result.push(e.type));

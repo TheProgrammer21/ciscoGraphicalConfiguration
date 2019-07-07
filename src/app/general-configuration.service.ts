@@ -27,8 +27,4 @@ export class GeneralConfigurationService {
     this.savedConfig = Object.assign({}, this.currentConfig);
     this.config.addGeneralConfig(this.savedConfig);
   }
-
-  public getSavedConfig() {
-    return this.savedConfig;
-  }
 }

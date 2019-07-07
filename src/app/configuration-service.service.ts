@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InterfaceSelection } from './interface-selection';
+import { isArray } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class ConfigurationService {
 
   private generalCommands: string = "";
   private interfaceCommands: string = "";
+  private routingCommands: string = "";
 
   private addCommand(com: string): void {
     this.commands += com + "\n";
@@ -43,6 +45,22 @@ export class ConfigurationService {
     console.log("Interfaces:");
     console.log(this.commands);
     this.interfaceCommands = this.commands;
+    this.commands = "";
+  }
+
+  public addRoutingConfig(configuration) {
+    if (configuration.rip.enabled) {
+      this.addCommand("no router rip"); //removes current configuration
+      this.addCommand("router rip");
+      Object.keys(configuration.rip).forEach(e => {
+        this.addConfigString("rip" + e, configuration.rip[e]);
+      });
+    } else {
+      this.addCommand("no router rip");
+    }
+    this.addCommand("exit");
+    console.log("Routing:");
+    console.log(this.commands);
     this.commands = "";
   }
 
@@ -118,6 +136,24 @@ export class ConfigurationService {
           this.addCommand("cdp enable");
         } else {
           this.addCommand("no cdp enable");
+        }
+        break;
+      case "ripversion":
+        this.addCommand("version " + value);
+        break;
+      case "ripnetworks":
+        value.forEach(e => {
+          this.addCommand("network " + e);
+        });
+        break;
+      case "rippassiveInterfaces":
+        if (Array.isArray(value)) {
+          value.forEach(e => {
+            if (e != "")
+              this.addCommand("passive-interface " + e)
+          });
+        } else {
+          this.addCommand("passive-interface default")
         }
         break;
     }

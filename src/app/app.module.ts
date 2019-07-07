@@ -9,6 +9,7 @@ import { InterfaceConfigurationComponent } from './interface-configuration/inter
 import { CollapsableComponent } from './collapsable/collapsable.component';
 import { InterfaceSettingsComponent } from './interface-settings/interface-settings.component';
 import { InterfaceSelectionComponent } from './interface-selection/interface-selection.component';
+import { RoutingConfigurationComponent } from './routing-configuration/routing-configuration.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { InterfaceSelectionComponent } from './interface-selection/interface-sel
     InterfaceConfigurationComponent,
     CollapsableComponent,
     InterfaceSettingsComponent,
-    InterfaceSelectionComponent
+    InterfaceSelectionComponent,
+    RoutingConfigurationComponent
   ],
   imports: [
     BrowserModule,
