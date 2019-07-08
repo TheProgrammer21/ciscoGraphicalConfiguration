@@ -18,6 +18,13 @@
             <p>Shutdown</p>
         </div>
         <div>
+            <ng-container *ngFor="let opt of speedOptions; index as o">
+                <input type="radio" value="opt" name="speed{{i}}" class="radioOption"
+                    [(ngModel)]="intConfig.currentConf[i].speed" id="opt{{o}}int{{i}}" [value]="opt">
+                <p>{{opt}}</p>
+            </ng-container>
+        </div>
+        <div>
             <input [(ngModel)]="intConfig.currentConf[i].cdpenable" type="checkbox" class="checkbox">
             <p>CDP enabled</p>
         </div>

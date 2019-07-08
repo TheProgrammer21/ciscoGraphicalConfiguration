@@ -183,6 +183,10 @@ export class ConfigurationService {
         } else {
           this.addCommand("description " + value);
         }
+        break;
+      case "speed":
+        this.addCommand("speed " + value);
+        break;
     }
   }
 }

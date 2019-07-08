@@ -28,7 +28,8 @@ export class InterfaceConfigurationService {
     cdpenable: true,
     ripReceiveVersion: "",
     ripSendVersion: "",
-    description: ""
+    description: "",
+    speed: "auto"
   };
 
   /**
