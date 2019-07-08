@@ -3,13 +3,14 @@ import { InterfaceSelection } from './interface-selection';
 import { ConfigurationService } from './configuration-service.service';
 import { NetworkUtilities } from './network-utilities';
 
+const deepcopy = require('deepcopy');
+
 @Injectable({
   providedIn: 'root'
 })
 export class InterfaceConfigurationService {
 
-  constructor(private conf: ConfigurationService) {
-  }
+  constructor(private conf: ConfigurationService) { }
 
   private index: number;
 
@@ -39,7 +40,7 @@ export class InterfaceConfigurationService {
 
   public addInterface(): void {
     this.currentInterfaces.push(null);
-    this.currentConf.push(Object.assign({}, this.emptyConf));
+    this.currentConf.push(this.clone(this.emptyConf));
   }
 
   public removeInterface(index: number) {
@@ -71,8 +72,8 @@ export class InterfaceConfigurationService {
 
   public initConfig() {
     if (!this.editSelection) {
-      this.currentConf = this.savedConf.slice();
-      this.currentInterfaces = this.savedInterfaces.slice();
+      this.currentConf = this.clone(this.savedConf);
+      this.currentInterfaces = this.clone(this.savedInterfaces);
     } else {
       this.editSelection = false;
     }
@@ -89,8 +90,8 @@ export class InterfaceConfigurationService {
     this.currentConf.forEach(e => {
       this.validate(e);
     })
-    this.savedConf = this.currentConf.slice();
-    this.savedInterfaces = this.currentInterfaces.slice();
+    this.savedConf = this.clone(this.currentConf);
+    this.savedInterfaces = this.clone(this.currentInterfaces);
     this.conf.addInterfaceConfig(this.currentInterfaces, this.currentConf);
   }
 
@@ -109,5 +110,22 @@ export class InterfaceConfigurationService {
     }
     delete this.currentConf['ip'];
     delete this.currentConf['subnetmask']
+  }
+
+  private clone(arr): any {
+    let res;
+    if (Array.isArray(arr)) {
+      res = arr.slice();
+      res = res.map(e => {
+        if (e instanceof InterfaceSelection) {
+          return new InterfaceSelection(e.toString(), e.toString());
+        } else {
+          return deepcopy(e);
+        }
+      });
+    } else {
+      res = deepcopy(arr);
+    }
+    return res;
   }
 }
