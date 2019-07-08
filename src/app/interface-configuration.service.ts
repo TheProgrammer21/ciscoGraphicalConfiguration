@@ -30,7 +30,8 @@ export class InterfaceConfigurationService {
     ripSendVersion: "",
     description: "",
     speed: "auto",
-    duplex: "auto"
+    duplex: "auto",
+    mdix: true
   };
 
   /**

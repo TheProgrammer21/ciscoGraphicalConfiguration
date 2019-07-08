@@ -33,6 +33,26 @@ export class InterfaceConfigurationComponent implements OnInit {
     this.interfaceConfig.splice(index, 1);
   }
 
+  public onChangeMDIX(value: boolean, index: number) {
+    if (value) {
+      if (this.intConfig.currentConf[index].speed != "auto") {
+        alert("If you set the speed to anything other than auto mdix might not work!");
+      } else if (this.intConfig.currentConf[index].duplex != "auto") {
+        alert("If you set duplex to anything other than auto mdix might not work!");
+      }
+    }
+  }
+
+  public onChangeDuplexOrSpeed(index: number, mode: string) { //if it is set to anything other than auto then mdix wouldn't work (warn)
+    if (this.intConfig.currentConf[index].mdix) {
+      if (mode == "speed" && this.intConfig.currentConf[index].speed != "auto") {
+        alert("If speed is set to anything other than 'auto', mdix might not work!");
+      } else if (mode == "duplex" && this.intConfig.currentConf[index].duplex != "auto") {
+        alert("If duplex is set to anything other than 'auto', mdix might not work!");
+      }
+    }
+  }
+
   public onRipReceive(type: string, v1: boolean, v2: boolean, i: number) {
     let versions;
     if (v1 && v2) {

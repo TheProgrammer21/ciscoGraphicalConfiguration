@@ -191,10 +191,17 @@ export class ConfigurationService {
         this.addCommand("duplex " + value);
         break;
       case "ripdefaultInformationOriginate":
-        if(value){
+        if (value) {
           this.addCommand("default-information originate");
-        }else{
+        } else {
           this.addCommand("no default-information originate");
+        }
+        break;
+      case "mdix":
+        if (value) {
+          this.addCommand("mdix auto");
+        } else {
+          this.addCommand("no mdix");
         }
         break;
     }

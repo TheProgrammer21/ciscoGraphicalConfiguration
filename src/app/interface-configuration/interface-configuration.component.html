@@ -21,17 +21,24 @@
             <p>Speed:</p>
             <ng-container *ngFor="let opt of speedOptions; index as o">
                 <input type="radio" value="opt" name="speed{{i}}" class="radioOption"
-                    [(ngModel)]="intConfig.currentConf[i].speed" id="speed{{o}}int{{i}}" [value]="opt">
+                    [(ngModel)]="intConfig.currentConf[i].speed" id="speed{{o}}int{{i}}" [value]="opt"
+                    (change)="onChangeDuplexOrSpeed(i, 'speed')">
                 <p class="radioText">{{opt}}</p>
             </ng-container>
         </div>
         <div>
             <p>Duplex:</p>
             <ng-container *ngFor="let opt of duplexOptions; index as o">
-                <input name="duplex{{i}}" id="duplex{{o}}int{{i}}" value="opt" type="radio" class="radioOption"
-                    [(ngModel)]="intConfig.currentConf[i].duplex" [value]="opt">
+                <input #duplex name="duplex{{i}}" id="duplex{{o}}int{{i}}" value="opt" type="radio" class="radioOption"
+                    [(ngModel)]="intConfig.currentConf[i].duplex" [value]="opt"
+                    (change)="onChangeDuplexOrSpeed(i, 'duplex')">
                 <p class="radioText">{{opt}}</p>
             </ng-container>
+        </div>
+        <div>
+            <input #mdix type="checkbox" class="checkbox" [(ngModel)]="intConfig.currentConf[i].mdix"
+                (change)="onChangeMDIX(mdix.checked, i)">
+            <p>Auto-MDIX</p>
         </div>
         <div>
             <input [(ngModel)]="intConfig.currentConf[i].cdpenable" type="checkbox" class="checkbox">
