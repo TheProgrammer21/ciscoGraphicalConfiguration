@@ -12,7 +12,8 @@ export class RoutingConfigurationService {
       version: 1,
       networks: [""],
       passiveInterfaces: [""],
-      routeSummerization: true
+      routeSummerization: true,
+      defaultInformationOriginate: false
     }
   };
 

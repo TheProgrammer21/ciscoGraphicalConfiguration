@@ -13,7 +13,14 @@
             <input [(ngModel)]="rouConfig.currentConfig.rip.networks[i]" pattern="\d{1,3}(\.\d{1,3}){3}" type="text">
             <button (click)="onRemoveNetwork(i)">-</button>
         </div>
-        <button (click)="onAddNetwork()">Add Network</button>
+        <div>
+            <button (click)="onAddNetwork()">Add Network</button>
+        </div>
+        <div>
+            <p>Advertise Default Routes:</p>
+            <input class="checkbox" type="checkbox"
+                [(ngModel)]="rouConfig.currentConfig.rip.defaultInformationOriginate">
+        </div>
         <br>
         <p>Passive Interfaces:</p>
         <input #def type="checkbox" class="checkbox" (change)="onDefaultPassive(def.checked)">
