@@ -187,6 +187,9 @@ export class ConfigurationService {
       case "speed":
         this.addCommand("speed " + value);
         break;
+        case "duplex":
+          this.addCommand("duplex " + value);
+          break;
     }
   }
 }

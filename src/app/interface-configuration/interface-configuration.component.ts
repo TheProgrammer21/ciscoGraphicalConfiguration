@@ -10,9 +10,8 @@ import { RoutingConfigurationService } from '../routing-configuration.service';
   styleUrls: ['../configuration.component.scss']
 })
 export class InterfaceConfigurationComponent implements OnInit {
-
   constructor(public conf: ConfigurationService, private _router: Router, public intConfig: InterfaceConfigurationService, private rouConfig: RoutingConfigurationService) { }
-test;
+
   ngOnInit() {
     this.intConfig.initConfig();
     if (this.intConfig.getInterfaces().length == 0) {
@@ -22,6 +21,7 @@ test;
 
   public interfaceConfig = [{}];
   public speedOptions = ["auto", "100", "1000", "10000"];
+  public duplexOptions = ["auto", "half", "full"];
 
   public onAddInterface(): void {
     this.intConfig.addInterface();

@@ -29,7 +29,8 @@ export class InterfaceConfigurationService {
     ripReceiveVersion: "",
     ripSendVersion: "",
     description: "",
-    speed: "auto"
+    speed: "auto",
+    duplex: "auto"
   };
 
   /**

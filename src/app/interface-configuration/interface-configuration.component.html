@@ -18,10 +18,19 @@
             <p>Shutdown</p>
         </div>
         <div>
+            <p>Speed:</p>
             <ng-container *ngFor="let opt of speedOptions; index as o">
                 <input type="radio" value="opt" name="speed{{i}}" class="radioOption"
-                    [(ngModel)]="intConfig.currentConf[i].speed" id="opt{{o}}int{{i}}" [value]="opt">
-                <p>{{opt}}</p>
+                    [(ngModel)]="intConfig.currentConf[i].speed" id="speed{{o}}int{{i}}" [value]="opt">
+                <p class="radioText">{{opt}}</p>
+            </ng-container>
+        </div>
+        <div>
+            <p>Duplex:</p>
+            <ng-container *ngFor="let opt of duplexOptions; index as o">
+                <input name="duplex{{i}}" id="duplex{{o}}int{{i}}" value="opt" type="radio" class="radioOption"
+                    [(ngModel)]="intConfig.currentConf[i].duplex" [value]="opt">
+                <p class="radioText">{{opt}}</p>
             </ng-container>
         </div>
         <div>
