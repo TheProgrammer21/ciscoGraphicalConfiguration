@@ -27,7 +27,8 @@ export class InterfaceConfigurationService {
     shutdown: false,
     cdpenable: true,
     ripReceiveVersion: "",
-    ripSendVersion: ""
+    ripSendVersion: "",
+    description: ""
   };
 
   /**

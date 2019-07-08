@@ -177,6 +177,12 @@ export class ConfigurationService {
           this.addCommand("ip rip send version " + value);
         }
         break;
+      case "description":
+        if (value == "") {
+          this.addCommand("no description");
+        } else {
+          this.addCommand("description " + value);
+        }
     }
   }
 }
