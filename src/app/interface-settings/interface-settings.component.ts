@@ -12,7 +12,7 @@ import { stringify } from '@angular/compiler/src/util';
   styleUrls: ['./interface-settings.component.scss']
 })
 export class InterfaceSettingsComponent implements OnInit {
-  public interfaces: { type: string, values: string }[] = [];
+  public interfaces: { type: string, values: string, internalType: string }[] = [];
 
   constructor(private avInt: AvailableInterfacesService, private router: Router, private intConfigurations: InterfaceConfigurationService) {
   }
@@ -22,7 +22,7 @@ export class InterfaceSettingsComponent implements OnInit {
   }
 
   onAddInterface(): void {
-    this.interfaces.push({ type: "", values: "" });
+    this.interfaces.push({ type: "", values: "", internalType: "" });
   }
 
   onRemoveInterface(i: number): void {
@@ -38,7 +38,7 @@ export class InterfaceSettingsComponent implements OnInit {
 
   private findConflicts(): number[] {
     let result: number[] = [];
-    let allNeeded = this.intConfigurations.getInterfaces().slice().map((e, i) => { return { value: e.toString(), index: i } });
+    let allNeeded = this.intConfigurations.getInterfaces().slice().map((e, i) => { return e == null ? null : { value: e.toString(), index: i } });
     //remove duplicates
     allNeeded = allNeeded.filter((element, index) => {
       return allNeeded.findIndex(e => e.value == element.value) == index;
@@ -53,7 +53,7 @@ export class InterfaceSettingsComponent implements OnInit {
     return result.sort((a, b) => b - a);
   }
 
-  //returns if want to save or not
+  //returns whether want to save or not
   private interfaceConfigurationAdaption(): boolean {
     let res = this.findConflicts();
     if (res.length != 0) {
@@ -69,6 +69,9 @@ export class InterfaceSettingsComponent implements OnInit {
   onSave(): void {
     //Todo: validate input
     if (this.interfaceConfigurationAdaption()) {
+      this.interfaces.forEach(e => {
+        this.intConfigurations.changeInternalType(e.type, e.internalType);
+      });
       this.avInt.setInterfaces(this.interfaces);
       this.router.navigate(["/"]);
     }

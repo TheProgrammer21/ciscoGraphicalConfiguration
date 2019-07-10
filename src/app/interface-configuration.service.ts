@@ -57,6 +57,14 @@ export class InterfaceConfigurationService {
     this.savedConf.splice(index, 1);
   }
 
+  public changeInternalType(type: string, internalType: string) {
+    this.savedInterfaces.forEach(e => {
+      if (e.getType() == type) {
+        e.setInternalType(internalType);
+      }
+    });
+  }
+
   public getInterface(): InterfaceSelection {
     return this.currentInterfaces[this.index];
   }
@@ -122,7 +130,7 @@ export class InterfaceConfigurationService {
       res = arr.slice();
       res = res.map(e => {
         if (e instanceof InterfaceSelection) {
-          return new InterfaceSelection(e.toString(), e.toString());
+          return new InterfaceSelection(e.toString(), e.toString(), e.getInternalType());
         } else {
           return deepcopy(e);
         }

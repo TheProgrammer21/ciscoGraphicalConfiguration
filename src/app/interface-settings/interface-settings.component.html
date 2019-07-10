@@ -2,6 +2,12 @@
 <div *ngFor="let intf of interfaces; index as i">
     <p>Type:</p><input type="text" [(ngModel)]="interfaces[i].type">
     <p>Interfaces-Numbers:</p><input [(ngModel)]="interfaces[i].values" pattern="\d+(-\d+)?(\/\d+(-\d+)?)+">
+    <input type="radio" [(ngModel)]="interfaces[i].internalType" name="internalType{{i}}" value="ethernet"
+        id="ethernet{{i}}">
+    <p class="radioText">Ethernet</p>
+    <input type="radio" [(ngModel)]="interfaces[i].internalType" name="internalType{{i}}" value="serial"
+        id="serial{{i}}">
+    <p class="radioText">Serial</p>
     <button (click)="onRemoveInterface(i)">Remove</button>
 </div>
 <button class="add" (click)="onAddInterface()">Add new interface type</button>

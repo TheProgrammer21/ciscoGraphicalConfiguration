@@ -7,18 +7,19 @@ export class AvailableInterfacesService {
 
   constructor() {
     this.setInterfaces([
-      { type: "GigabitEthernet", values: "0/1-24" },
-      { type: "FastEthernet", values: "0/1-2" }
+      { type: "GigabitEthernet", values: "0/1-24", internalType: "ethernet" },
+      { type: "FastEthernet", values: "0/1-2", internalType: "ethernet" },
+      { type: "Serial", values: "0/0/1-4", internalType: "serial" }
     ]);
   }
 
   private types: any = [{}];
 
-  public setInterfaces(values: { type: string, values: string }[]) {
+  public setInterfaces(values: { type: string, values: string, internalType: string }[]) {
     this.types = values;
   }
 
-  public getInterfaces(): { type: string, values: string }[] {
+  public getInterfaces(): { type: string, values: string, internalType: string }[] {
     return this.types;
   }
 

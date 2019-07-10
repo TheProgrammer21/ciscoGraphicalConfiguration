@@ -2,67 +2,71 @@
     <collapsable
         [title]="intConfig.getInterfaces()[i]==null?'Interface has yet to be selected':intConfig.getInterfaces()[i].getTitle()"
         (edit)="onEditInterface(i)" (remove)="onRemoveInterface(i)">
-        <div>
-            <p>Description:</p>
-            <input type="texT" [(ngModel)]="intConfig.currentConf[i].description">
-        </div>
-        <div>
-            <p>IP-Address:</p>
-            <input #ip [(ngModel)]="intConfig.currentConf[i].ip" pattern="\d{1,3}(\.\d{1,3}){3}">
-            <p>Subnetmask:</p>
-            <input #subnetmask [(ngModel)]="intConfig.currentConf[i].subnetmask"
-                pattern="\d{1,3}(\.\d{1,3}){3}|\/[1-2][0-9]|\/3[0-2]|\/[1-9]">
-        </div>
-        <div>
-            <input [(ngModel)]="intConfig.currentConf[i].shutdown" type="checkbox" class="checkbox">
-            <p>Shutdown</p>
-        </div>
-        <div>
-            <p>Speed:</p>
-            <ng-container *ngFor="let opt of speedOptions; index as o">
-                <input type="radio" value="opt" name="speed{{i}}" class="radioOption"
-                    [(ngModel)]="intConfig.currentConf[i].speed" id="speed{{o}}int{{i}}" [value]="opt"
-                    (change)="onChangeDuplexOrSpeed(i, 'speed')">
-                <p class="radioText">{{opt}}</p>
+        <ng-container *ngIf="intConfig.getInterfaces()[i] != null">
+            <div>
+                <p>Description:</p>
+                <input type="texT" [(ngModel)]="intConfig.currentConf[i].description">
+            </div>
+            <div>
+                <p>IP-Address:</p>
+                <input #ip [(ngModel)]="intConfig.currentConf[i].ip" pattern="\d{1,3}(\.\d{1,3}){3}">
+                <p>Subnetmask:</p>
+                <input #subnetmask [(ngModel)]="intConfig.currentConf[i].subnetmask"
+                    pattern="\d{1,3}(\.\d{1,3}){3}|\/[1-2][0-9]|\/3[0-2]|\/[1-9]">
+            </div>
+            <div>
+                <input [(ngModel)]="intConfig.currentConf[i].shutdown" type="checkbox" class="checkbox">
+                <p>Shutdown</p>
+            </div>
+            <ng-container *ngIf="this.intConfig.getInterfaces()[i].getInternalType() == 'ethernet'">
+                <div>
+                    <p>Speed:</p>
+                    <ng-container *ngFor="let opt of speedOptions; index as o">
+                        <input type="radio" value="opt" name="speed{{i}}" class="radioOption"
+                            [(ngModel)]="intConfig.currentConf[i].speed" id="speed{{o}}int{{i}}" [value]="opt"
+                            (change)="onChangeDuplexOrSpeed(i, 'speed')">
+                        <p class="radioText">{{opt}}</p>
+                    </ng-container>
+                </div>
+                <div>
+                    <p>Duplex:</p>
+                    <ng-container *ngFor="let opt of duplexOptions; index as o">
+                        <input #duplex name="duplex{{i}}" id="duplex{{o}}int{{i}}" value="opt" type="radio"
+                            class="radioOption" [(ngModel)]="intConfig.currentConf[i].duplex" [value]="opt"
+                            (change)="onChangeDuplexOrSpeed(i, 'duplex')">
+                        <p class="radioText">{{opt}}</p>
+                    </ng-container>
+                </div>
+                <div>
+                    <input #mdix type="checkbox" class="checkbox" [(ngModel)]="intConfig.currentConf[i].mdix"
+                        (change)="onChangeMDIX(mdix.checked, i)">
+                    <p>Auto-MDIX</p>
+                </div>
             </ng-container>
-        </div>
-        <div>
-            <p>Duplex:</p>
-            <ng-container *ngFor="let opt of duplexOptions; index as o">
-                <input #duplex name="duplex{{i}}" id="duplex{{o}}int{{i}}" value="opt" type="radio" class="radioOption"
-                    [(ngModel)]="intConfig.currentConf[i].duplex" [value]="opt"
-                    (change)="onChangeDuplexOrSpeed(i, 'duplex')">
-                <p class="radioText">{{opt}}</p>
-            </ng-container>
-        </div>
-        <div>
-            <input #mdix type="checkbox" class="checkbox" [(ngModel)]="intConfig.currentConf[i].mdix"
-                (change)="onChangeMDIX(mdix.checked, i)">
-            <p>Auto-MDIX</p>
-        </div>
-        <div>
-            <input [(ngModel)]="intConfig.currentConf[i].cdpenable" type="checkbox" class="checkbox">
-            <p>CDP enabled</p>
-        </div>
-        <div *ngIf="rouConfig.ripEnabled()">
-            <p>RIP receive Versions:</p>
-            <input #receiveV1 [checked]="intConfig.currentConf[i].ripReceiveVersion.includes('1')"
-                (click)="onRipReceive('receive', receiveV1.checked, receiveV2.checked, i)" type="checkbox"
-                class="checkbox">
-            <p>1</p>
-            <input #receiveV2 [checked]="intConfig.currentConf[i].ripReceiveVersion.includes('2')"
-                (click)="onRipReceive('receive', receiveV1.checked, receiveV2.checked, i)" type="checkbox"
-                class="checkbox">
-            <p>2</p>
-            <br>
-            <p>RIP send Versions:</p>
-            <input #sendV1 [checked]="intConfig.currentConf[i].ripSendVersion.includes('1')"
-                (click)="onRipReceive('send', sendV1.checked, sendV2.checked, i)" type="checkbox" class="checkbox">
-            <p>1</p>
-            <input #sendV2 [checked]="intConfig.currentConf[i].ripSendVersion.includes('2')"
-                (click)="onRipReceive('send', sendV1.checked, sendV2.checked, i)" type="checkbox" class="checkbox">
-            <p>2</p>
-        </div>
+            <div>
+                <input [(ngModel)]="intConfig.currentConf[i].cdpenable" type="checkbox" class="checkbox">
+                <p>CDP enabled</p>
+            </div>
+            <div *ngIf="rouConfig.ripEnabled()">
+                <p>RIP receive Versions:</p>
+                <input #receiveV1 [checked]="intConfig.currentConf[i].ripReceiveVersion.includes('1')"
+                    (click)="onRipReceive('receive', receiveV1.checked, receiveV2.checked, i)" type="checkbox"
+                    class="checkbox">
+                <p>1</p>
+                <input #receiveV2 [checked]="intConfig.currentConf[i].ripReceiveVersion.includes('2')"
+                    (click)="onRipReceive('receive', receiveV1.checked, receiveV2.checked, i)" type="checkbox"
+                    class="checkbox">
+                <p>2</p>
+                <br>
+                <p>RIP send Versions:</p>
+                <input #sendV1 [checked]="intConfig.currentConf[i].ripSendVersion.includes('1')"
+                    (click)="onRipReceive('send', sendV1.checked, sendV2.checked, i)" type="checkbox" class="checkbox">
+                <p>1</p>
+                <input #sendV2 [checked]="intConfig.currentConf[i].ripSendVersion.includes('2')"
+                    (click)="onRipReceive('send', sendV1.checked, sendV2.checked, i)" type="checkbox" class="checkbox">
+                <p>2</p>
+            </div>
+        </ng-container>
     </collapsable>
 </div>
 <br>

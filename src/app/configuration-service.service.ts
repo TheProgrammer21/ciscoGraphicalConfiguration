@@ -26,7 +26,7 @@ export class ConfigurationService {
     this.addCommand("configure terminal");
 
     Object.keys(conf).forEach(e => {
-      this.addConfigString(e, conf[e]);
+      this.addConfigString(e, conf[e], undefined);
     });
     console.log("General:");
     console.log(this.commands);
@@ -35,10 +35,10 @@ export class ConfigurationService {
   }
 
   public addInterfaceConfig(interfaces: InterfaceSelection[], configuration: {}[]) {
-    interfaces.forEach((e, i) => {
-      this.addCommand(e.getConfigString());
+    interfaces.forEach((el, i) => {
+      this.addCommand(el.getConfigString());
       Object.keys(configuration[i]).forEach(e => {
-        this.addConfigString(e, (configuration[i])[e]);
+        this.addConfigString(e, (configuration[i])[e], el.getInternalType());
       });
       this.addCommand("exit");
     });
@@ -53,7 +53,7 @@ export class ConfigurationService {
       this.addCommand("no router rip"); //removes current configuration
       this.addCommand("router rip");
       Object.keys(configuration.rip).forEach(e => {
-        this.addConfigString("rip" + e, configuration.rip[e]);
+        this.addConfigString("rip" + e, configuration.rip[e], undefined);
       });
     } else {
       this.addCommand("no router rip");
@@ -64,7 +64,7 @@ export class ConfigurationService {
     this.commands = "";
   }
 
-  private addConfigString(key, value) {
+  private addConfigString(key, value, internalType) {
     let config = "";
 
     switch (key) {
@@ -185,10 +185,12 @@ export class ConfigurationService {
         }
         break;
       case "speed":
-        this.addCommand("speed " + value);
+        if (internalType == "ethernet")
+          this.addCommand("speed " + value);
         break;
       case "duplex":
-        this.addCommand("duplex " + value);
+        if (internalType == "ethernet")
+          this.addCommand("duplex " + value);
         break;
       case "ripdefaultInformationOriginate":
         if (value) {
@@ -198,11 +200,11 @@ export class ConfigurationService {
         }
         break;
       case "mdix":
-        if (value) {
-          this.addCommand("mdix auto");
-        } else {
-          this.addCommand("no mdix");
-        }
+        if (internalType == "ethernet")
+          if (value)
+            this.addCommand("mdix auto");
+          else
+            this.addCommand("no mdix");
         break;
     }
   }

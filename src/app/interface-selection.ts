@@ -4,8 +4,9 @@ export class InterfaceSelection {
     private start: number;
     private end: number;
     private range: boolean; //True wenn ein Range, false wenn einzelnes (wenn start == end)
+    private internalType: string; //ethernet || serial
 
-    constructor(startInterface: string, endInterface: string) {
+    constructor(startInterface: string, endInterface: string, internalType: string) {
         let split = this.disassembleInterface(startInterface);
         this.type = split.type;
         this.prefix = split.prefix;
@@ -19,6 +20,7 @@ export class InterfaceSelection {
         }
 
         this.range = this.start != this.end;
+        this.internalType = internalType;
     }
 
     private disassembleInterface(int: string) {
@@ -34,6 +36,14 @@ export class InterfaceSelection {
 
     public getType(): string {
         return this.type;
+    }
+
+    public getInternalType(): string {
+        return this.internalType;
+    }
+
+    public setInternalType(type: string) {
+        this.internalType = type;
     }
 
     public getPrefix(): string {

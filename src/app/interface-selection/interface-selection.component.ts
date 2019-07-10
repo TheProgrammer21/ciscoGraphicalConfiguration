@@ -41,7 +41,7 @@ export class InterfaceSelectionComponent implements OnInit {
   }
 
   public onSave() {
-    this.selectedInterface.setInterface(new InterfaceSelection(this.allInterfaces[this.selInterface], this.allInterfaces[this.selInterface]));
+    this.selectedInterface.setInterface(new InterfaceSelection(this.allInterfaces[this.selInterface], this.allInterfaces[this.selInterface], this.interfaces.getInterfaces()[this.selType].internalType));
     this.router.navigate(["./interfaces"]);
   }
 
