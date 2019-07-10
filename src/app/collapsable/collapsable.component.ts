@@ -10,6 +10,7 @@ export class CollapsableComponent implements OnInit {
   @Output() edit = new EventEmitter();
   @Output() remove = new EventEmitter();
   @Input('title') title: string;
+  @Input('editable') editable: boolean;
 
   public collapsed: boolean = false;
 

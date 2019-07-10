@@ -1,5 +1,5 @@
 <div *ngFor="let int of intConfig.getInterfaces(); index as i" class="collapse">
-    <collapsable
+    <collapsable editable="true"
         [title]="intConfig.getInterfaces()[i]==null?'Interface has yet to be selected':intConfig.getInterfaces()[i].getTitle()"
         (edit)="onEditInterface(i)" (remove)="onRemoveInterface(i)">
         <ng-container *ngIf="intConfig.getInterfaces()[i] != null">

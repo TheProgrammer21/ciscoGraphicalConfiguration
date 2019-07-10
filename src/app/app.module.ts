@@ -10,6 +10,7 @@ import { CollapsableComponent } from './collapsable/collapsable.component';
 import { InterfaceSettingsComponent } from './interface-settings/interface-settings.component';
 import { InterfaceSelectionComponent } from './interface-selection/interface-selection.component';
 import { RoutingConfigurationComponent } from './routing-configuration/routing-configuration.component';
+import { VlanConfigurationComponent } from './vlan-configuration/vlan-configuration.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RoutingConfigurationComponent } from './routing-configuration/routing-c
     CollapsableComponent,
     InterfaceSettingsComponent,
     InterfaceSelectionComponent,
-    RoutingConfigurationComponent
+    RoutingConfigurationComponent,
+    VlanConfigurationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+<h1>VLAN Configuration</h1>
+<p>Neues VLAN:</p>
+<input #newVlan type="number" min=1 max=1005>
+<button (click)="onCreate(newVlan.value)">VLAN erstellen</button>
+<div *ngFor="let vlan of vlanConf.currentVlans; index as i" class="collapse">
+    <collapsable title="{{vlan.name != '' ? vlan.name : 'VLAN ' + vlan.number}}" editable="false"
+        (remove)="onDelete(i)">
+        <div>
+            <p>VLAN Number: {{vlan.number}}</p>
+            <br>
+            <p>Name:</p><input [(ngModel)]="vlanConf.currentVlans[i].name">
+        </div>
+    </collapsable>
+</div>
+<br>
+<button routerLink="/" (click)="onSave()">Save</button>
+<button routerLink="/">Cancel</button>

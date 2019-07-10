@@ -16,6 +16,7 @@ export class ConfigurationService {
   private generalCommands: string = "";
   private interfaceCommands: string = "";
   private routingCommands: string = "";
+  private vlanCommands: string = "";
 
   private addCommand(com: string): void {
     this.commands += com + "\n";
@@ -61,6 +62,20 @@ export class ConfigurationService {
     this.addCommand("exit");
     console.log("Routing:");
     console.log(this.commands);
+    this.routingCommands = this.commands;
+    this.commands = "";
+  }
+
+  public addVlanConfig(vlans: { number: number, name: string }[]) {
+    vlans.forEach(vlan => {
+      this.addCommand("vlan " + vlan.number);
+      if (vlan.name != "")
+        this.addCommand("name " + vlan.name);
+      this.addCommand("exit");
+    });
+    console.log("VLAN:");
+    console.log(this.commands);
+    this.vlanCommands = this.commands;
     this.commands = "";
   }
 
