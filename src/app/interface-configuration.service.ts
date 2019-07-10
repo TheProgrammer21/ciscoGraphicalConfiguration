@@ -31,7 +31,8 @@ export class InterfaceConfigurationService {
     description: "",
     speed: "auto",
     duplex: "auto",
-    mdix: true
+    mdix: true,
+    clockrate: ""
   };
 
   /**

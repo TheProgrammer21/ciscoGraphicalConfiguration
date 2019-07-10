@@ -206,6 +206,12 @@ export class ConfigurationService {
           else
             this.addCommand("no mdix");
         break;
+      case "clockrate":
+        if (internalType == "serial")
+          if (value == "")
+            this.addCommand("no clock rate");
+          else
+            this.addCommand("clock rate " + value);
     }
   }
 }

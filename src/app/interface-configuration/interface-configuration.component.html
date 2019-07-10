@@ -43,6 +43,10 @@
                     <p>Auto-MDIX</p>
                 </div>
             </ng-container>
+            <div *ngIf="intConfig.getInterfaces()[i].getInternalType() == 'serial'">
+                <p>Clock Rate:</p>
+                <input [(ngModel)]="intConfig.currentConf[i].clockrate" type="number">
+            </div>
             <div>
                 <input [(ngModel)]="intConfig.currentConf[i].cdpenable" type="checkbox" class="checkbox">
                 <p>CDP enabled</p>
