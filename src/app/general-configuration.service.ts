@@ -14,7 +14,8 @@ export class GeneralConfigurationService {
     passwordEncryption: false,
     cdprun: true,
     history: true,
-    historysize: 10
+    historysize: 10,
+    defaultgateway: ""
   };
 
   constructor(private config: ConfigurationService) { }

@@ -212,6 +212,13 @@ export class ConfigurationService {
             this.addCommand("no clock rate");
           else
             this.addCommand("clock rate " + value);
+        break;
+      case "defaultgateway":
+        if (value == "")
+          this.addCommand("no ip default-gateway");
+        else
+          this.addCommand("ip default-gateway " + value);
+        break;
     }
   }
 }
