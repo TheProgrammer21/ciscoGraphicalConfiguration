@@ -44,4 +44,8 @@ export class VlanConfigurationService {
     });
     this.config.addVlanConfig(this.savedVlans);
   }
+
+  public getSavedVlans() {
+    return this.savedVlans;
+  }
 }

@@ -32,7 +32,9 @@ export class InterfaceConfigurationService {
     speed: "auto",
     duplex: "auto",
     mdix: true,
-    clockrate: ""
+    clockrate: "",
+    switchportmode: "access",
+    accessVlan: ""
   };
 
   /**

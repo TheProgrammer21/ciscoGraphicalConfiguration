@@ -234,6 +234,14 @@ export class ConfigurationService {
         else
           this.addCommand("ip default-gateway " + value);
         break;
+      case "switchportmode":
+        this.addCommand("switchport mode " + value);
+        break;
+      case "accessVlan":
+        if (value == "")
+          this.addCommand("no switchport access vlan")
+        else
+          this.addCommand("switchport access vlan " + value);
     }
   }
 }

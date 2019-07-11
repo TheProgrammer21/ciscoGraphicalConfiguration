@@ -1,3 +1,7 @@
+<div>
+    <input type="checkbox" class="checkbox" [(ngModel)]="avInterfaces.isSwitch">
+    <p>The device is a Switch</p>
+</div>
 <div *ngFor="let int of intConfig.getInterfaces(); index as i" class="collapse">
     <collapsable editable="true"
         [title]="intConfig.getInterfaces()[i]==null?'Interface has yet to be selected':intConfig.getInterfaces()[i].getTitle()"
@@ -69,6 +73,24 @@
                 <input #sendV2 [checked]="intConfig.currentConf[i].ripSendVersion.includes('2')"
                     (click)="onRipReceive('send', sendV1.checked, sendV2.checked, i)" type="checkbox" class="checkbox">
                 <p>2</p>
+            </div>
+            <div *ngIf="avInterfaces.isSwitch">
+                <p>Switchport Configuration:</p>
+                <div>
+                    <p>Mode:</p>
+                    <ng-container *ngFor="let mode of switchportModes; index as u">
+                        <input type="radio" name="port{{i}}" id="mode{{u}}{{i}}"
+                            [(ngModel)]="intConfig.currentConf[i].switchportmode" [value]="mode" class="radioOption">
+                        <p class="radioText">{{mode}}</p>
+                    </ng-container>
+                </div>
+                <div *ngIf="intConfig.currentConf[i].switchportmode == 'access'">
+                    <p>Access VLAN:</p>
+                    <select [(ngModel)]="intConfig.currentConf[i].accessVlan">
+                        <option></option>
+                        <option *ngFor="let vlan of avVlans.getSavedVlans(); index as v">{{vlan.number}}</option>
+                    </select>
+                </div>
             </div>
         </ng-container>
     </collapsable>

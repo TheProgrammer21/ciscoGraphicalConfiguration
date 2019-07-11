@@ -14,6 +14,7 @@ export class AvailableInterfacesService {
   }
 
   private types: any = [{}];
+  public isSwitch: boolean = false; //Whether the device is a Switch or not
 
   public setInterfaces(values: { type: string, values: string, internalType: string }[]) {
     this.types = values;

@@ -1,7 +1,7 @@
 <h1>VLAN Configuration</h1>
 <p>Neues VLAN:</p>
 <input #newVlan type="number" min=1 max=1005>
-<button (click)="onCreate(newVlan.value)">VLAN erstellen</button>
+<button (click)="onCreate(newVlan.value); newVlan.value = ''">VLAN erstellen</button>
 <div *ngFor="let vlan of vlanConf.currentVlans; index as i" class="collapse">
     <collapsable title="{{vlan.name != '' ? vlan.name : 'VLAN ' + vlan.number}}" editable="false"
         (remove)="onDelete(i)">

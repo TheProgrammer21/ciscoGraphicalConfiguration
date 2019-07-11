@@ -3,6 +3,8 @@ import { ConfigurationService } from '../configuration-service.service';
 import { Router } from '@angular/router';
 import { InterfaceConfigurationService } from '../interface-configuration.service';
 import { RoutingConfigurationService } from '../routing-configuration.service';
+import { AvailableInterfacesService } from '../available-interfaces.service';
+import { VlanConfigurationService } from '../vlan-configuration.service';
 
 @Component({
   selector: 'app-interface-configuration',
@@ -10,7 +12,7 @@ import { RoutingConfigurationService } from '../routing-configuration.service';
   styleUrls: ['../configuration.component.scss']
 })
 export class InterfaceConfigurationComponent implements OnInit {
-  constructor(public conf: ConfigurationService, private _router: Router, public intConfig: InterfaceConfigurationService, private rouConfig: RoutingConfigurationService) { }
+  constructor(public conf: ConfigurationService, private _router: Router, public intConfig: InterfaceConfigurationService, private rouConfig: RoutingConfigurationService, private avInterfaces: AvailableInterfacesService, private avVlans: VlanConfigurationService) { }
 
   ngOnInit() {
     this.intConfig.initConfig();
@@ -22,6 +24,7 @@ export class InterfaceConfigurationComponent implements OnInit {
   public interfaceConfig = [{}];
   public speedOptions = ["auto", "100", "1000", "10000"];
   public duplexOptions = ["auto", "half", "full"];
+  public switchportModes = ["access", "trunk"];
 
   public onAddInterface(): void {
     this.intConfig.addInterface();
